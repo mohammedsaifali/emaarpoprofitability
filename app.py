@@ -72,6 +72,15 @@ def main():
             # Display the processed data in the app
             st.header("Processed Data")
             st.dataframe(processed_data_df)
+            
+            # Download button to download the processed data
+            csv_data = processed_data_df.to_csv(index=False)
+            st.download_button(
+                label="Download Processed Data",
+                data=csv_data,
+                file_name="processed_data.csv",
+                mime="text/csv"
+            )
 
 if __name__ == "__main__":
     main()
