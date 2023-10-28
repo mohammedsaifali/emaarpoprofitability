@@ -47,7 +47,7 @@ def process_sales_data(sales_register_file, sales_profitability_file):
     )
 
     # Calculate Profit column as AmountAfterTax_Sum - PurchaseAmount_Sum
-    aggregated_values_df['Profit'] = aggregated_values_df['AmountAfterTax_Sum'] - aggregated_values_df['PurchaseAmount_Sum']
+    aggregated_values_df['Profit'] = aggregated_values_df['Amount'] - aggregated_values_df['PurchaseAmount_Sum']
 
     return aggregated_values_df
 
