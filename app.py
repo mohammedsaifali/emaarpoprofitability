@@ -6,7 +6,7 @@ def aggregate_values_based_on_invoices(df, invoice_list):
     # Filter the DataFrame based on the given list of invoice numbers
     filtered_df = df[df['InvNo'].isin(invoice_list)]
     return pd.Series({
-        'AmountAfterTax_Sum': filtered_df['AmountAfterTax'].sum(),
+        'AmountAfterTax_Sum': filtered_df['Amount'].sum(),
         'PurchaseAmount_Sum': filtered_df['PurchaseAmount'].sum()
     })
 
