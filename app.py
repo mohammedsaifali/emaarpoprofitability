@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-# Define a function to aggregate AmountAfterTax and PurchaseAmount based on a list of invoice numbers
+# Define a function to aggregate Amount_Sum and PurchaseAmount based on a list of invoice numbers
 def aggregate_values_based_on_invoices(df, invoice_list):
     # Filter the DataFrame based on the given list of invoice numbers
     filtered_df = df[df['InvNo'].isin(invoice_list)]
@@ -23,7 +23,7 @@ def process_sales_data(sales_register_file, sales_profitability_file):
     sales_profitability_df = pd.read_excel(sales_profitability_file, skiprows=3)
 
     re_aggregated_sales_profitability_df = sales_profitability_df.groupby(['InvNo', 'BillTo']).agg({
-        'AmountAfterTax': 'sum',
+        'Amount': 'sum',
         'PurchaseAmount': 'sum'
     }).reset_index()
 
@@ -47,7 +47,7 @@ def process_sales_data(sales_register_file, sales_profitability_file):
     )
 
     # Calculate Profit column as AmountAfterTax_Sum - PurchaseAmount_Sum
-    aggregated_values_df['Profit'] = aggregated_values_df['Amount'] - aggregated_values_df['PurchaseAmount_Sum']
+    aggregated_values_df['Profit'] = aggregated_values_df['Amount_Sum'] - aggregated_values_df['PurchaseAmount_Sum']
 
     return aggregated_values_df
 
